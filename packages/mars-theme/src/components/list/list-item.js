@@ -15,7 +15,7 @@ const Item = ({ state, item }) => {
   const date = new Date(item.date);
 
   return (
-    <article>
+    <StyledArticle>
       <Link link={item.link}>
         <Title dangerouslySetInnerHTML={{ __html: item.title.rendered }} />
       </Link>
@@ -44,15 +44,34 @@ const Item = ({ state, item }) => {
       )}
 
       {/* If the post has an excerpt (short summary text), we render it */}
-      {item.excerpt && (
+      {/* {item.excerpt && (
         <Excerpt dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }} />
-      )}
-    </article>
+      )} */}
+    </StyledArticle>
   );
 };
 
 // Connect the Item to gain access to `state` as a prop
 export default connect(Item);
+
+const StyledArticle = styled.article`
+  border: 1px solid red;
+  padding: 4px;
+  margin: 4px;
+  border-radius: 8px;
+  transition-duration:0.25s;
+  &:hover {
+    box-shadow:
+      0px 0px 0.7px rgba(0, 0, 0, 0.017),
+      0px 0px 1.7px rgba(0, 0, 0, 0.024),
+      0px 0px 3.3px rgba(0, 0, 0, 0.03),
+      0px 0px 5.8px rgba(0, 0, 0, 0.036),
+      0px 0px 10.9px rgba(0, 0, 0, 0.043),
+      0px 0px 26px rgba(0, 0, 0, 0.06);
+      transition-duration:0.25s;
+  }
+
+`;
 
 const Title = styled.h1`
   font-size: 2rem;

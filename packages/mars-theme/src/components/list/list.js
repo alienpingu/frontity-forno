@@ -22,13 +22,14 @@ const List = ({ state }) => {
           Author: <b>{decode(state.source.author[data.id].name)}</b>
         </Header>
       )}
-
+      <ItemContainer>
       {/* Iterate over the items of the list. */}
       {data.items.map(({ type, id }) => {
         const item = state.source[type][id];
         // Render one Item component for each one.
         return <Item key={item.id} item={item} />;
       })}
+      </ItemContainer>
       <Pagination />
     </Container>
   );
@@ -37,9 +38,7 @@ const List = ({ state }) => {
 export default connect(List);
 
 const Container = styled.section`
-  width: 800px;
   margin: 0;
-  padding: 24px;
   list-style: none;
 `;
 
@@ -47,4 +46,11 @@ const Header = styled.h3`
   font-weight: 300;
   text-transform: capitalize;
   color: rgba(12, 17, 43, 0.9);
+`;
+
+const ItemContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  grid-template-row: repeat(3,auto);
+  min-height: 100vh;
 `;
